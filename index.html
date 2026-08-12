@@ -9,6 +9,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('roy-portfolio-theme');
+        const preferred = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = preferred;
+      } catch (_) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,11 +31,18 @@
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#work">Work</a>
+        <a href="#highlights">Highlights</a>
         <a href="#journey">Journey</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="nav-cta" href="#contact">Let's connect</a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark theme" title="Toggle dark theme">
+          <span class="theme-icon" aria-hidden="true">◐</span>
+          <span class="theme-label">Theme</span>
+        </button>
+        <a class="nav-cta" href="#contact">Let's connect</a>
+      </div>
       <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -32,9 +50,14 @@
     <div class="mobile-panel" aria-hidden="true">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#highlights">Highlights</a>
       <a href="#journey">Journey</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <button class="theme-toggle mobile-theme-toggle" id="mobileThemeToggle" type="button" aria-label="Toggle dark theme">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span class="theme-label">Toggle theme</span>
+      </button>
     </div>
   </header>
 
@@ -143,22 +166,80 @@
               <span>Cybersecurity</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span>
             </div>
           </div>
-          <div class="project-art shield-art" aria-hidden="true">
-            <div class="radar">
-              <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-              <div class="sweep"></div>
-              <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
-              <div class="radar-label">monitor / explain / respond</div>
-            </div>
+          <div class="project-art shield-art">
+            <img class="yorshield-logo" src="assets/yorshield-logo.webp" alt="YorShield Security logo" loading="lazy" />
+            <div class="logo-caption">AI-assisted security · 2026</div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="highlights section-pad" id="highlights">
+      <div class="container">
+        <div class="section-heading highlight-heading reveal">
+          <div>
+            <p class="eyebrow">03 / Highlights</p>
+            <h2>AI for Impact Challenge 2026.</h2>
+          </div>
+          <p>One featured moment, with the full bootcamp story available to browse when you open the gallery.</p>
+        </div>
+
+        <div class="bootcamp-showcase reveal">
+          <button class="bootcamp-feature" type="button" data-gallery="bootcamp" data-gallery-index="0" aria-label="Open AI for Impact bootcamp gallery">
+            <img src="assets/bootcamp-stage.webp" alt="Roy presenting YorShield Security at the AI for Impact Challenge" />
+            <span class="feature-overlay">
+              <span class="feature-kicker">Featured moment</span>
+              <strong>Presenting YorShield Security</strong>
+              <small>AI for Impact Challenge 2026 · Click to open full gallery</small>
+            </span>
+          </button>
+
+          <div class="reel-shell" aria-label="AI for Impact photo reel">
+            <div class="reel-fade reel-fade-left" aria-hidden="true"></div>
+            <div class="photo-reel" id="photoReel">
+              <div class="photo-reel-track">
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="1"><img src="assets/bootcamp-challenge.webp" alt="Roy at the AI for Impact Challenge venue" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="2"><img src="assets/bootcamp-potraz.webp" alt="Roy at POTRAZ during AI4I 2026" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="3"><img src="assets/bootcamp-working.webp" alt="Roy working during an AI4I bootcamp session" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="4"><img src="assets/bootcamp-group.webp" alt="Roy with fellow AI4I participants" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="5"><img src="assets/ai4i-session-front.webp" alt="Roy seated during an AI4I programme session" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="6"><img src="assets/ai4i-dinner-three.webp" alt="Roy with fellow participants during AI4I 2026" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="7"><img src="assets/ai4i-session-wide.webp" alt="AI4I 2026 programme environment" loading="lazy"></button>
+                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="8"><img src="assets/ai4i-dinner-four.webp" alt="Roy networking with fellow participants during AI4I 2026" loading="lazy"></button>
+
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="1" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-challenge.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="2" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-potraz.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="3" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-working.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="4" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-group.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="5" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-session-front.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="6" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-dinner-three.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="7" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-session-wide.webp" alt="" loading="lazy"></button>
+                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="8" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-dinner-four.webp" alt="" loading="lazy"></button>
+              </div>
+            </div>
+            <div class="reel-fade reel-fade-right" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="recognition-block reveal">
+          <div class="recognition-copy">
+            <p class="eyebrow">Recognition</p>
+            <h3>YorShield Security</h3>
+            <p>Certificate of Appreciation presented for YorShield Security's contribution as an innovator during the AI for Impact Challenge 2026.</p>
+            <div class="recognition-meta"><span>31 July 2026</span><span>POTRAZ · AI4I</span></div>
+          </div>
+          <button class="certificate-feature" type="button" data-gallery="certificate" data-gallery-index="0" aria-label="Open YorShield certificate">
+            <img src="assets/yorshield-certificate.webp" alt="Certificate of Appreciation presented to YorShield Security" loading="lazy">
+            <span>View certificate ↗</span>
+          </button>
+        </div>
       </div>
     </section>
 
     <section class="journey section-pad" id="journey">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="eyebrow">03 / Journey</p>
+          <p class="eyebrow">04 / Journey</p>
           <h2>A trajectory, not a project dump.</h2>
         </div>
         <div class="timeline">
@@ -197,7 +278,7 @@
     <section class="skills section-pad" id="skills">
       <div class="container skills-grid">
         <div class="section-heading reveal">
-          <p class="eyebrow">04 / Capabilities</p>
+          <p class="eyebrow">05 / Capabilities</p>
           <h2>The toolkit behind the work.</h2>
           <p class="section-note">Focused on technologies and domains relevant to the systems I am building now.</p>
         </div>
@@ -224,7 +305,7 @@
 
     <section class="now section-pad">
       <div class="container now-card reveal">
-        <p class="eyebrow">05 / Now</p>
+        <p class="eyebrow">06 / Now</p>
         <div class="now-grid">
           <h2>What I'm working on right now.</h2>
           <div class="now-list">
@@ -240,7 +321,7 @@
     <section class="contact section-pad" id="contact">
       <div class="container contact-grid reveal">
         <div>
-          <p class="eyebrow">06 / Contact</p>
+          <p class="eyebrow">07 / Contact</p>
           <h2>Building something difficult?<br><span>We should probably talk.</span></h2>
         </div>
         <div class="contact-side">
@@ -264,6 +345,22 @@
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery viewer">
+    <button class="lightbox-close" type="button" aria-label="Close gallery">×</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
+    <div class="lightbox-content">
+      <div class="lightbox-stage">
+        <img id="lightboxImage" src="" alt="" />
+      </div>
+      <div class="lightbox-info">
+        <p id="lightboxCaption"></p>
+        <span id="lightboxCounter"></span>
+      </div>
+      <div class="lightbox-thumbs" id="lightboxThumbs" aria-label="Gallery thumbnails"></div>
+    </div>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -1,39 +1,27 @@
-# Roy Chidhungwana — Personal Portfolio
+# Roy Portfolio Site
 
-Static HTML/CSS/JS portfolio prepared for GitHub Pages.
+Static portfolio website built for GitHub Pages.
 
-## Before publishing
+## What changed
+- Added a light/dark theme toggle with theme persistence using `localStorage`.
+- Added a **Highlights** section with real AI for Impact bootcamp photos.
+- Added the YorShield Security certificate in the correct landscape orientation.
+- Added the YorShield logo to the project section.
+- Added a click-to-expand image lightbox.
+- Optimized uploaded photos as WebP files for GitHub Pages.
 
-Open `index.html` and replace the four placeholder contact links in the Contact section:
+## Media assets
+The `assets/` folder now contains the selected and optimized portfolio images. Keep the original high-resolution photos backed up separately.
 
-- LinkedIn
-- GitHub
-- Email (`mailto:...`)
-- CV file/path
+## Deploy on GitHub Pages
+1. Create a GitHub repository.
+2. Upload all files from this folder.
+3. Go to **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Select the `main` branch and `/root` folder.
+6. Save.
 
-If you add a CV, place it in `assets/` (for example `assets/Roy-Chidhungwana-CV.pdf`) and update the Download CV link.
-
-## GitHub Pages deployment
-
-1. Create a GitHub repository, e.g. `roychidhungwana.github.io` or `portfolio`.
-2. Upload all files in this folder to the repository root.
-3. If the repository is named `<username>.github.io`, GitHub Pages can serve it directly from the main branch.
-4. Otherwise go to **Settings → Pages → Build and deployment → Deploy from a branch**, select `main` and `/root`.
-5. Your site will then be available at your GitHub Pages URL.
+Your site will be published on a `github.io` URL.
 
 ## Custom domain later
-
-When you buy a domain:
-
-1. In GitHub repository **Settings → Pages**, add the custom domain.
-2. Configure the DNS records with your domain provider as GitHub instructs.
-3. Enable HTTPS once GitHub validates the DNS.
-
-No redesign or migration is required — the same static site can remain hosted on GitHub Pages with the custom domain pointing to it.
-
-## Structure
-
-- `index.html` — content and page structure
-- `styles.css` — visual design and responsive layout
-- `script.js` — mobile menu, reveal animations and header behaviour
-- `assets/` — future CV, images, screenshots, favicon, etc.
+When you buy a domain later, you can connect it in **GitHub Pages → Custom domain** without rebuilding the site.
