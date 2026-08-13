@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Roy Chidhungwana — Computer Science student, founder and technologist building AI, Linux and systems products for African contexts." />
-  <meta name="theme-color" content="#0a0a0a" />
-  <title>Roy Chidhungwana — Builder, Founder & Computer Science Student</title>
+  <meta name="description" content="Roy Chidhungwana — Computer Science student at the University of Zimbabwe focused on defensive cybersecurity, Linux, AI and systems engineering." />
+  <meta name="theme-color" content="#f4f2ec" />
+  <title>Roy Chidhungwana — Computer Science · Cybersecurity · Linux · AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -13,93 +13,70 @@
     (() => {
       try {
         const saved = localStorage.getItem('roy-portfolio-theme');
-        const preferred = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.dataset.theme = preferred;
-      } catch (_) {
-        document.documentElement.dataset.theme = 'light';
-      }
-      document.documentElement.classList.add('js');
+        const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (_) {}
     })();
   </script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Roy Chidhungwana home">RC<span>.</span></a>
+      <a class="brand wordmark" href="#top" aria-label="Roy Chidhungwana home"><span>&gt;</span>roychid</a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#work">Work</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#journey">Journey</a>
-        <a href="#skills">Skills</a>
+        <a href="#events">Events</a>
+        <a href="#skills">Capabilities</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark theme" title="Toggle dark theme">
-          <span class="theme-icon" aria-hidden="true">◐</span>
-          <span class="theme-label">Theme</span>
+      <div class="nav-tools">
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
+          <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </button>
-        <a class="nav-cta" href="#contact">Let's connect</a>
+        <a class="nav-cta" href="#contact">Connect</a>
       </div>
-      <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
-        <span></span><span></span>
-      </button>
+      <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     </div>
     <div class="mobile-panel" aria-hidden="true">
       <a href="#about">About</a>
       <a href="#work">Work</a>
-      <a href="#highlights">Highlights</a>
-      <a href="#journey">Journey</a>
-      <a href="#skills">Skills</a>
+      <a href="#events">Events</a>
+      <a href="#skills">Capabilities</a>
       <a href="#contact">Contact</a>
-      <button class="theme-toggle mobile-theme-toggle" id="mobileThemeToggle" type="button" aria-label="Toggle dark theme">
-        <span class="theme-icon" aria-hidden="true">◐</span>
-        <span class="theme-label">Toggle theme</span>
-      </button>
+      <button class="theme-toggle mobile-theme" type="button" aria-label="Switch theme">Switch theme</button>
     </div>
   </header>
 
   <main>
     <section class="hero section-pad">
-      <div class="container hero-grid">
+      <div class="container hero-layout">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Zimbabwe · Computer Science · Building in public</p>
-          <h1>I build technology<br>for the environments<br><span>Africa actually has.</span></h1>
-          <p class="hero-lede">I'm Roy Chidhungwana — a Computer Science student, founder and technologist exploring AI, Linux, systems engineering and resilient computing.</p>
+          <h1>I’m Roy<br>Chidhungwana.</h1>
+          <p class="hero-lede">A Computer Science student at the University of Zimbabwe and a cybersecurity enthusiast focused on defensive security. I’m also an aspiring innovator exploring Linux, AI, systems engineering, resilient computing and robotics.</p>
           <div class="hero-actions">
             <a class="button primary" href="#work">Explore my work</a>
-            <a class="button text" href="#about">More about me <span>↘</span></a>
+            <a class="button text" href="#about">About me <span>↘</span></a>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Current focus: YorOS">
-          <div class="orbital-card">
-            <div class="signal-line"></div>
-            <div class="status-pill"><span class="pulse"></span> Currently building</div>
-            <div class="os-mark">Y<span>or</span>OS</div>
-            <p>Offline-first AI computing for education.</p>
-            <div class="capability-grid">
-              <div><strong>01</strong><span>Linux</span></div>
-              <div><strong>02</strong><span>Local AI</span></div>
-              <div><strong>03</strong><span>Offline-first</span></div>
-              <div><strong>04</strong><span>Education</span></div>
-            </div>
-          </div>
-          <div class="float-chip chip-one">Edge AI</div>
-          <div class="float-chip chip-two">Systems</div>
-        </div>
+        <aside class="building-now reveal" aria-label="Currently building YorOS">
+          <div class="building-label"><span class="pulse"></span> Currently building</div>
+          <h2>YorOS</h2>
+          <p>An offline-first AI operating environment starting with education and designed around practical computing constraints.</p>
+          <a class="arrow-link" href="projects/yoros.html">Explore YorOS <span>↗</span></a>
+        </aside>
       </div>
     </section>
 
-    <section class="proof-strip" aria-label="Profile highlights">
-      <div class="container proof-grid">
-        <div><span>Current</span><strong>University of Zimbabwe</strong></div>
-        <div><span>Focus</span><strong>AI × Linux × Systems</strong></div>
-        <div><span>Building</span><strong>YorOS</strong></div>
-        <div><span>Based</span><strong>Zimbabwe</strong></div>
+    <section class="focus-strip" aria-label="Current focus areas">
+      <div class="container focus-grid">
+        <div><span>01</span><strong>Cybersecurity</strong></div>
+        <div><span>02</span><strong>Linux</strong></div>
+        <div><span>03</span><strong>AI</strong></div>
+        <div><span>04</span><strong>Systems Engineering</strong></div>
       </div>
     </section>
 
@@ -107,172 +84,89 @@
       <div class="container two-col">
         <div class="section-heading reveal">
           <p class="eyebrow">01 / About</p>
-          <h2>Not interested in building technology just because it can be built.</h2>
+          <h2>Learning deeply. Building deliberately.</h2>
         </div>
         <div class="about-copy reveal">
-          <p class="lead">I am interested in the layer beneath the application: the systems, infrastructure and constraints that determine whether technology is actually usable.</p>
-          <p>My work has increasingly moved toward questions around local AI, resilient computing, Linux, cybersecurity and what it means to design technology for African environments instead of assuming permanent cloud access, unlimited bandwidth or expensive hardware.</p>
-          <p>I am currently studying Computer Science at the University of Zimbabwe while building YorOS and continuing to deepen my technical foundation across software, operating systems and AI.</p>
-          <div class="principles">
-            <div><span>01</span><p>Build around real constraints.</p></div>
-            <div><span>02</span><p>Validate before scaling.</p></div>
-            <div><span>03</span><p>Own the technical fundamentals.</p></div>
-          </div>
+          <p class="lead">I am currently pursuing Computer Science at the University of Zimbabwe while actively exploring defensive cybersecurity, Linux, artificial intelligence and systems engineering.</p>
+          <p>I’m particularly interested in understanding how secure and resilient systems are designed from the infrastructure layer upward. Alongside that, I’m keen on robotics and the intersection between software, intelligent systems and real-world machines.</p>
+          <p>My aim is to keep developing strong technical foundations while building projects that force me to apply what I learn to practical problems.</p>
         </div>
       </div>
     </section>
 
     <section class="work section-pad" id="work">
       <div class="container">
-        <div class="section-heading work-heading reveal">
-          <div>
-            <p class="eyebrow">02 / Selected work</p>
-            <h2>Building from the infrastructure layer upward.</h2>
-          </div>
-          <p>Selected work only — focused on the projects that best represent where I am going.</p>
+        <div class="section-heading compact-heading reveal">
+          <p class="eyebrow">02 / Work</p>
+          <h2>Selected projects.</h2>
+          <p>Each project has its own page with the story, technical direction, status and available links.</p>
         </div>
 
-        <article class="project flagship reveal">
-          <div class="project-copy">
-            <div class="project-meta"><span>Flagship</span><span>2026 — Present</span></div>
-            <h3>YorOS</h3>
-            <p class="project-tagline">An offline-first AI operating environment being built for African education.</p>
-            <p>YorOS explores what happens when AI is designed into the computing environment itself rather than added as another cloud-dependent application. The project combines a Linux base, local AI and education-focused tools with an emphasis on limited-connectivity environments and practical hardware.</p>
-            <div class="tag-row">
-              <span>Linux</span><span>Local LLMs</span><span>Edge AI</span><span>EdTech</span>
-            </div>
-            <div class="project-status"><span class="pulse"></span> Active development · First prototype in progress</div>
-          </div>
-          <div class="project-art yoros-art" aria-hidden="true">
-            <div class="terminal-window">
-              <div class="terminal-top"><i></i><i></i><i></i><span>yoros://local</span></div>
-              <div class="terminal-body">
-                <p><b>yor@edge</b>:~$ system status</p>
-                <p class="muted">local-ai ........ ready</p>
-                <p class="muted">network ......... optional</p>
-                <p class="muted">knowledge ....... local</p>
-                <p><b>yor@edge</b>:~$ <span class="cursor">_</span></p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="project secondary reveal">
-          <div class="project-copy">
-            <div class="project-meta"><span>Previous major work</span><span>2026</span></div>
-            <h3>YorShield Security</h3>
-            <p class="project-tagline">AI-assisted cybersecurity monitoring and guided response.</p>
-            <p>A cybersecurity project that pushed me deeper into event collection, explainable security alerts, controlled infrastructure simulations, PostgreSQL, FastAPI and Linux-based deployment. It also taught me a critical founder lesson: technical sophistication does not replace customer validation.</p>
-            <div class="tag-row">
-              <span>Cybersecurity</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span>
-            </div>
-          </div>
-          <div class="project-art shield-art">
-            <img class="yorshield-logo" src="assets/yorshield-logo.webp" width="900" height="900" alt="YorShield Security logo" loading="lazy" />
-            <div class="logo-caption">AI-assisted security · 2026</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="highlights section-pad" id="highlights">
-      <div class="container">
-        <div class="section-heading highlight-heading reveal">
-          <div>
-            <p class="eyebrow">03 / Highlights</p>
-            <h2>AI for Impact Challenge 2026.</h2>
-          </div>
-          <p>One featured moment, with the full bootcamp story available to browse when you open the gallery.</p>
-        </div>
-
-        <div class="bootcamp-showcase reveal">
-          <button class="bootcamp-feature" type="button" data-gallery="bootcamp" data-gallery-index="0" aria-label="Open AI for Impact bootcamp gallery">
-            <img src="assets/bootcamp-stage.webp" width="1800" height="1200" alt="Roy presenting YorShield Security at the AI for Impact Challenge" />
-            <span class="feature-overlay">
-              <span class="feature-kicker">Featured moment</span>
-              <strong>Presenting YorShield Security</strong>
-              <small>AI for Impact Challenge 2026 · Click to open full gallery</small>
-            </span>
-          </button>
-
-          <div class="reel-shell" aria-label="AI for Impact photo reel">
-            <div class="reel-fade reel-fade-left" aria-hidden="true"></div>
-            <div class="photo-reel" id="photoReel">
-              <div class="photo-reel-track">
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="1"><img src="assets/bootcamp-challenge.webp" width="1350" height="1800" alt="Roy at the AI for Impact Challenge venue" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="2"><img src="assets/bootcamp-potraz.webp" width="1350" height="1800" alt="Roy at POTRAZ during AI4I 2026" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="3"><img src="assets/bootcamp-working.webp" width="1152" height="1536" alt="Roy working during an AI4I bootcamp session" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="4"><img src="assets/bootcamp-group.webp" width="1350" height="1800" alt="Roy with fellow AI4I participants" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="5"><img src="assets/ai4i-session-front.webp" width="1800" height="1350" alt="Roy seated during an AI4I programme session" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="6"><img src="assets/ai4i-dinner-three.webp" width="1800" height="1350" alt="Roy with fellow participants during AI4I 2026" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="7"><img src="assets/ai4i-session-wide.webp" width="1800" height="1350" alt="AI4I 2026 programme environment" loading="lazy"></button>
-                <button class="reel-thumb" type="button" data-gallery="bootcamp" data-gallery-index="8"><img src="assets/ai4i-dinner-four.webp" width="1800" height="1350" alt="Roy networking with fellow participants during AI4I 2026" loading="lazy"></button>
-
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="1" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-challenge.webp" width="1350" height="1800" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="2" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-potraz.webp" width="1350" height="1800" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="3" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-working.webp" width="1152" height="1536" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="4" aria-hidden="true" tabindex="-1"><img src="assets/bootcamp-group.webp" width="1350" height="1800" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="5" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-session-front.webp" width="1800" height="1350" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="6" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-dinner-three.webp" width="1800" height="1350" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="7" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-session-wide.webp" width="1800" height="1350" alt="" loading="lazy"></button>
-                <button class="reel-thumb reel-clone" type="button" data-gallery="bootcamp" data-gallery-index="8" aria-hidden="true" tabindex="-1"><img src="assets/ai4i-dinner-four.webp" width="1800" height="1350" alt="" loading="lazy"></button>
-              </div>
-            </div>
-            <div class="reel-fade reel-fade-right" aria-hidden="true"></div>
-          </div>
-        </div>
-
-        <div class="recognition-block reveal">
-          <div class="recognition-copy">
-            <p class="eyebrow">Recognition</p>
-            <h3>YorShield Security</h3>
-            <p>Certificate of Appreciation presented for YorShield Security's contribution as an innovator during the AI for Impact Challenge 2026.</p>
-            <div class="recognition-meta"><span>31 July 2026</span><span>POTRAZ · AI4I</span></div>
-          </div>
-          <button class="certificate-feature" type="button" data-gallery="certificate" data-gallery-index="0" aria-label="Open YorShield certificate">
-            <img src="assets/yorshield-certificate.webp" width="1536" height="1152" alt="Certificate of Appreciation presented to YorShield Security" loading="lazy">
-            <span>View certificate ↗</span>
-          </button>
+        <div class="work-list reveal">
+          <a class="work-row" href="projects/poultrysmart.html">
+            <span class="work-no">01</span>
+            <div><h3>PoultrySmart</h3><p>AI · Agriculture · Decision Support</p></div>
+            <span class="work-arrow">↗</span>
+          </a>
+          <a class="work-row" href="projects/scorexi.html">
+            <span class="work-no">02</span>
+            <div><h3>Scorexi Football</h3><p>Football Technology · Live Data · Fan Experience</p></div>
+            <span class="work-arrow">↗</span>
+          </a>
+          <a class="work-row" href="projects/yorshield.html">
+            <span class="work-no">03</span>
+            <div><h3>YorShield Security</h3><p>Defensive Cybersecurity · Monitoring · AI</p></div>
+            <span class="work-arrow">↗</span>
+          </a>
+          <a class="work-row" href="projects/yoros.html">
+            <span class="work-no">04</span>
+            <div><h3>YorOS</h3><p>Linux · Local AI · Systems Engineering</p></div>
+            <span class="work-arrow">↗</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="journey section-pad" id="journey">
+    <section class="events section-pad" id="events">
       <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">04 / Journey</p>
-          <h2>A trajectory, not a project dump.</h2>
+        <div class="section-heading compact-heading reveal">
+          <p class="eyebrow">03 / Events</p>
+          <h2>AI for Impact Challenge 2026.</h2>
         </div>
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <div class="timeline-year">2026</div>
-            <div class="timeline-body">
-              <h3>University of Zimbabwe</h3>
-              <p>Beginning formal Computer Science studies while continuing independent technical work across AI, Linux and systems engineering.</p>
+
+        <article class="event-card reveal">
+          <a class="event-feature" href="events/ai4i-2026.html" aria-label="Open AI for Impact Challenge 2026 event page">
+            <img src="assets/bootcamp-stage.webp" alt="Roy presenting YorShield Security during the AI for Impact Challenge 2026" />
+            <span class="event-feature-label">Presenting YorShield Security</span>
+          </a>
+          <div class="event-info">
+            <p class="event-kicker">POTRAZ · 2026</p>
+            <h3>AI for Impact Challenge</h3>
+            <p>Bootcamp participation, product presentation, programme moments and recognition connected to YorShield Security.</p>
+            <div class="event-recognition"><span>Recognition</span><strong>YorShield Security — Certificate of Appreciation</strong></div>
+            <a class="arrow-link" href="events/ai4i-2026.html">View full event <span>↗</span></a>
+          </div>
+          <div class="event-reel" aria-label="AI4I photo preview">
+            <div class="event-reel-track">
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-challenge.webp" alt="Roy at the AI for Impact Challenge venue"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-potraz.webp" alt="Roy at the POTRAZ backdrop"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-working.webp" alt="Roy working during a bootcamp session"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-group.webp" alt="Roy with fellow AI4I participants"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-session-front.webp" alt="Roy during the AI4I programme"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-dinner-three.webp" alt="Roy with fellow AI4I participants"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-session-wide.webp" alt="AI4I programme session"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-dinner-four.webp" alt="Roy networking at AI4I"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-challenge.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-potraz.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-working.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/bootcamp-group.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-session-front.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-dinner-three.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-session-wide.webp" alt="" aria-hidden="true"></a>
+              <a href="events/ai4i-2026.html"><img src="assets/ai4i-dinner-four.webp" alt="" aria-hidden="true"></a>
             </div>
           </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-year">2026</div>
-            <div class="timeline-body">
-              <h3>AI for Impact Challenge Bootcamp</h3>
-              <p>Participated in the 2026 AI for Impact Challenge Bootcamp, working around technology deployment and African problem contexts.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-year">2026</div>
-            <div class="timeline-body">
-              <h3>YorShield Security</h3>
-              <p>Built a substantial cybersecurity prototype and learned first-hand why product validation must develop alongside engineering.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-year">Now</div>
-            <div class="timeline-body">
-              <h3>Building YorOS</h3>
-              <p>Combining Linux, on-device AI and systems thinking into an offline-first computing platform, starting with education.</p>
-            </div>
-          </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -281,39 +175,24 @@
         <div class="section-heading reveal">
           <p class="eyebrow">05 / Capabilities</p>
           <h2>The toolkit behind the work.</h2>
-          <p class="section-note">Focused on technologies and domains relevant to the systems I am building now.</p>
+          <p class="section-note">A practical mix of software, security, systems and AI skills that I’m continuing to deepen.</p>
         </div>
         <div class="skill-groups reveal">
           <div class="skill-group">
             <span class="skill-no">01</span>
-            <div><h3>Systems & Linux</h3><p>Linux · Debian · Docker · Networking · System customisation</p></div>
+            <div><h3>Software Engineering</h3><p>Python · JavaScript · FastAPI · SQL · REST APIs · Git/GitHub</p></div>
           </div>
           <div class="skill-group">
             <span class="skill-no">02</span>
-            <div><h3>AI & Local Computing</h3><p>Local LLMs · On-device AI · Offline architectures · AI integration</p></div>
+            <div><h3>Security & Infrastructure</h3><p>Defensive security · Event pipelines · PostgreSQL · Docker · Cloud deployment</p></div>
           </div>
           <div class="skill-group">
             <span class="skill-no">03</span>
-            <div><h3>Software Engineering</h3><p>Python · FastAPI · JavaScript · SQL · REST APIs · Git/GitHub</p></div>
+            <div><h3>Systems & Linux</h3><p>Linux · Debian · Networking · System customisation · Local-first architecture</p></div>
           </div>
           <div class="skill-group">
             <span class="skill-no">04</span>
-            <div><h3>Security & Infrastructure</h3><p>Defensive security · Event pipelines · PostgreSQL · Cloud deployment</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="now section-pad">
-      <div class="container now-card reveal">
-        <p class="eyebrow">06 / Now</p>
-        <div class="now-grid">
-          <h2>What I'm working on right now.</h2>
-          <div class="now-list">
-            <div><span>01</span><p>Engineering the first bootable YorOS prototype.</p></div>
-            <div><span>02</span><p>Exploring efficient local language models for ordinary hardware.</p></div>
-            <div><span>03</span><p>Validating education workflows where offline AI creates real value.</p></div>
-            <div><span>04</span><p>Deepening my foundations in operating systems, AI and defensive security.</p></div>
+            <div><h3>AI & Local Computing</h3><p>Local LLMs · On-device AI · Offline AI architectures · AI integration</p></div>
           </div>
         </div>
       </div>
@@ -326,14 +205,23 @@
           <h2>Building something difficult?<br><span>We should probably talk.</span></h2>
         </div>
         <div class="contact-side">
-          <p>I'm open to conversations around technology, research, collaboration, accelerators, internships and ambitious projects.</p>
+          <p>I’m open to conversations around technology, research, collaboration, accelerators, internships and ambitious projects.</p>
           <div class="contact-links">
-            <a href="https://www.linkedin.com/in/roy-chidhungwana-0726bb3b1" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
-            <a href="https://github.com/roychid" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-            <a href="https://www.instagram.com/roychid" target="_blank" rel="noopener noreferrer">Instagram <span>↗</span></a>
-            <a href="mailto:chidhungwanaroy4@gmail.com">Email <span>↗</span></a>
-            <!-- Replace # with a CV file link before publishing -->
-            <a href="#" data-placeholder="true">Download CV <span>↓</span></a>
+            <a href="#" data-placeholder="true" aria-label="LinkedIn">
+              <span class="contact-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.3H3.2V20h3.3V8.3ZM4.85 3A1.92 1.92 0 1 0 4.85 6.84 1.92 1.92 0 0 0 4.85 3ZM20.8 13.3c0-3.52-1.88-5.16-4.39-5.16-2.02 0-2.93 1.11-3.43 1.9V8.3H9.67V20h3.31v-5.8c0-1.53.29-3.01 2.19-3.01 1.87 0 1.89 1.75 1.89 3.11V20h3.31l.43-6.7Z"/></svg>LinkedIn</span><span>↗</span>
+            </a>
+            <a href="#" data-placeholder="true" aria-label="GitHub">
+              <span class="contact-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.89-.01-1.75-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.31 9.31 0 0 1 12 7.12c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.95.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>GitHub</span><span>↗</span>
+            </a>
+            <a href="#" data-placeholder="true" aria-label="Email">
+              <span class="contact-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.5l7 4.9 7-4.9V7H5Zm14 10V9.94l-7 4.9-7-4.9V17h14Z"/></svg>Email</span><span>↗</span>
+            </a>
+            <a href="https://wa.me/263775881639" target="_blank" rel="noopener" aria-label="WhatsApp Roy Chidhungwana">
+              <span class="contact-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 2 17.7L.45 23.35l5.79-1.52A11.78 11.78 0 0 0 12 23.3h.01A11.8 11.8 0 0 0 20.52 3.48ZM12 21.31h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.44.9.92-3.35-.23-.35A9.81 9.81 0 1 1 12 21.31Zm5.39-7.35c-.3-.15-1.74-.86-2.01-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.49.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.05 2.85 1.2 3.05c.15.2 2.07 3.16 5.02 4.43.7.3 1.25.48 1.68.62.71.22 1.35.19 1.86.12.57-.08 1.74-.71 1.99-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.56-.35Z"/></svg>WhatsApp</span><span>↗</span>
+            </a>
+            <a href="#" data-placeholder="true" aria-label="Download CV">
+              <span class="contact-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h9l5 5v15H5V2Zm9 2.4V8h3.6L14 4.4ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Z"/></svg>Download CV</span><span>↓</span>
+            </a>
           </div>
         </div>
       </div>
@@ -343,27 +231,10 @@
   <footer>
     <div class="container footer-wrap">
       <p>© <span id="year"></span> Roy Chidhungwana</p>
-      <p>Designed for the next chapter.</p>
+      <p>Computer Science · Security · Systems</p>
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
-
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery viewer">
-    <button class="lightbox-close" type="button" aria-label="Close gallery">×</button>
-    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
-    <div class="lightbox-content">
-      <div class="lightbox-stage">
-        <img id="lightboxImage" src="" alt="" />
-      </div>
-      <div class="lightbox-info">
-        <p id="lightboxCaption"></p>
-        <span id="lightboxCounter"></span>
-      </div>
-      <div class="lightbox-thumbs" id="lightboxThumbs" aria-label="Gallery thumbnails"></div>
-    </div>
-    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>

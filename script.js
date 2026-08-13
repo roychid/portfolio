@@ -1,44 +1,30 @@
+const THEME_KEY = 'roy-portfolio-theme';
+const root = document.documentElement;
 const themeButtons = document.querySelectorAll('.theme-toggle');
 const themeMeta = document.querySelector('meta[name="theme-color"]');
-const THEME_KEY = 'roy-portfolio-theme';
 
-function readSavedTheme() {
-  try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; }
-}
-function saveTheme(theme) {
-  try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+function getTheme() {
+  try { return localStorage.getItem(THEME_KEY) || root.dataset.theme || 'light'; }
+  catch (_) { return root.dataset.theme || 'light'; }
 }
 function applyTheme(theme, persist = false) {
   const next = theme === 'dark' ? 'dark' : 'light';
-  document.documentElement.dataset.theme = next;
-  if (persist) saveTheme(next);
-  if (themeMeta) themeMeta.setAttribute('content', next === 'dark' ? '#0b0d0a' : '#f4f2ec');
-  themeButtons.forEach((button) => {
-    const isDark = next === 'dark';
-    button.setAttribute('aria-pressed', String(isDark));
-    button.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-    button.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
-    const icon = button.querySelector('.theme-icon');
-    const label = button.querySelector('.theme-label');
-    if (icon) icon.textContent = isDark ? '☀' : '☾';
-    if (label) label.textContent = isDark ? 'Light' : 'Dark';
+  root.dataset.theme = next;
+  if (persist) { try { localStorage.setItem(THEME_KEY, next); } catch (_) {} }
+  if (themeMeta) themeMeta.content = next === 'dark' ? '#0b0d0a' : '#f4f2ec';
+  themeButtons.forEach(btn => {
+    btn.setAttribute('aria-pressed', String(next === 'dark'));
+    btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    btn.title = next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
   });
 }
-
-const initialTheme = document.documentElement.dataset.theme || readSavedTheme() ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-applyTheme(initialTheme);
-themeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    applyTheme(next, true);
-  });
-});
+applyTheme(getTheme());
+themeButtons.forEach(btn => btn.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true)));
 
 const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 16));
 const menuBtn = document.querySelector('.menu-btn');
 const mobilePanel = document.querySelector('.mobile-panel');
-window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 20));
 menuBtn?.addEventListener('click', () => {
   const open = menuBtn.getAttribute('aria-expanded') === 'true';
   menuBtn.setAttribute('aria-expanded', String(!open));
@@ -46,121 +32,39 @@ menuBtn?.addEventListener('click', () => {
   mobilePanel?.setAttribute('aria-hidden', String(open));
   document.body.classList.toggle('menu-open', !open);
 });
-mobilePanel?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+mobilePanel?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   menuBtn?.setAttribute('aria-expanded', 'false');
   mobilePanel.classList.remove('open');
   mobilePanel.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('menu-open');
 }));
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+}), { threshold:.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-window.setTimeout(() => {
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
-}, 4000);
-const yearNode = document.getElementById('year');
-if (yearNode) yearNode.textContent = new Date().getFullYear();
-document.querySelectorAll('[data-placeholder="true"]').forEach(link => {
-  link.addEventListener('click', (event) => event.preventDefault());
-});
+setTimeout(() => document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible')), 2500);
+const year = document.getElementById('year'); if (year) year.textContent = new Date().getFullYear();
+document.querySelectorAll('[data-placeholder="true"]').forEach(link => link.addEventListener('click', e => e.preventDefault()));
 
-const galleries = {
-  bootcamp: [
-    { src:'assets/bootcamp-stage.webp', alt:'Roy presenting YorShield Security at the AI for Impact Challenge', caption:'Presenting YorShield Security during the AI for Impact Challenge 2026.' },
-    { src:'assets/bootcamp-challenge.webp', alt:'Roy at the AI for Impact Challenge venue', caption:'At the AI for Impact Challenge venue during the 2026 bootcamp.' },
-    { src:'assets/bootcamp-potraz.webp', alt:'Roy at POTRAZ during the AI for Impact Challenge', caption:'At POTRAZ during the AI for Impact Challenge 2026.' },
-    { src:'assets/bootcamp-working.webp', alt:'Roy working during an AI4I bootcamp session', caption:'Working during a bootcamp session at the AI for Impact Challenge 2026.' },
-    { src:'assets/bootcamp-group.webp', alt:'Roy with fellow AI4I participants', caption:'A group moment during the AI for Impact Challenge 2026.' },
-    { src:'assets/ai4i-session-front.webp', alt:'Roy seated during an AI4I programme session', caption:'During the AI for Impact Challenge 2026 programme sessions.' },
-    { src:'assets/ai4i-dinner-three.webp', alt:'Roy with fellow participants during AI4I 2026', caption:'With fellow participants during the AI for Impact Challenge 2026.' },
-    { src:'assets/ai4i-session-wide.webp', alt:'AI4I 2026 programme environment', caption:'Inside the AI for Impact Challenge 2026 programme environment.' },
-    { src:'assets/ai4i-dinner-four.webp', alt:'Roy networking with fellow participants during AI4I 2026', caption:'Networking with fellow participants during AI4I 2026.' }
-  ],
-  certificate: [
-    { src:'assets/yorshield-certificate.webp', alt:'Certificate of Appreciation presented to YorShield Security', caption:'Certificate of Appreciation presented to YorShield Security for contribution as an innovator during the AI for Impact Challenge 2026.' }
-  ]
-};
-
+// Inner-page image viewer.
 const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
+const lightboxImg = document.getElementById('lightboxImage');
 const lightboxCaption = document.getElementById('lightboxCaption');
-const lightboxCounter = document.getElementById('lightboxCounter');
-const lightboxThumbs = document.getElementById('lightboxThumbs');
-const lightboxClose = document.querySelector('.lightbox-close');
-const lightboxPrev = document.querySelector('.lightbox-prev');
-const lightboxNext = document.querySelector('.lightbox-next');
-let activeGallery = 'bootcamp';
-let activeIndex = 0;
-
-function renderGallery() {
-  const items = galleries[activeGallery] || [];
-  if (!items.length || !lightboxImage) return;
-  activeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
-  const item = items[activeIndex];
-  lightboxImage.src = item.src;
-  lightboxImage.alt = item.alt;
-  if (lightboxCaption) lightboxCaption.textContent = item.caption;
-  if (lightboxCounter) lightboxCounter.textContent = `${activeIndex + 1} / ${items.length}`;
-  const single = items.length <= 1;
-  if (lightboxPrev) lightboxPrev.hidden = single;
-  if (lightboxNext) lightboxNext.hidden = single;
-  if (lightboxThumbs) {
-    lightboxThumbs.innerHTML = '';
-    if (!single) {
-      items.forEach((thumbItem, index) => {
-        const btn = document.createElement('button');
-        btn.className = `lightbox-thumb${index === activeIndex ? ' active' : ''}`;
-        btn.type = 'button';
-        btn.setAttribute('aria-label', `View image ${index + 1}`);
-        btn.innerHTML = `<img src="${thumbItem.src}" alt="">`;
-        btn.addEventListener('click', () => { activeIndex = index; renderGallery(); });
-        lightboxThumbs.appendChild(btn);
-      });
-      lightboxThumbs.querySelector('.active')?.scrollIntoView({ inline:'center', block:'nearest', behavior:'smooth' });
-    }
-  }
+const galleryButtons = [...document.querySelectorAll('[data-view-image]')];
+let galleryIndex = 0;
+function openImage(index) {
+  if (!lightbox || !galleryButtons.length) return;
+  galleryIndex = (index + galleryButtons.length) % galleryButtons.length;
+  const btn = galleryButtons[galleryIndex];
+  if (lightboxImg) { lightboxImg.src = btn.dataset.viewImage; lightboxImg.alt = btn.dataset.alt || ''; }
+  if (lightboxCaption) lightboxCaption.textContent = btn.dataset.caption || '';
+  lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
 }
-
-function openGallery(name, index = 0) {
-  if (!galleries[name] || !lightbox) return;
-  activeGallery = name;
-  activeIndex = Number(index) || 0;
-  renderGallery();
-  lightbox.classList.add('open');
-  lightbox.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  lightboxClose?.focus();
-}
-function closeGallery() {
-  if (!lightbox) return;
-  lightbox.classList.remove('open');
-  lightbox.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-function moveGallery(delta) {
-  const items = galleries[activeGallery] || [];
-  if (items.length <= 1) return;
-  activeIndex = (activeIndex + delta + items.length) % items.length;
-  renderGallery();
-}
-
-document.querySelectorAll('[data-gallery]').forEach((button) => {
-  button.addEventListener('click', () => openGallery(button.dataset.gallery, button.dataset.galleryIndex));
-});
-lightboxClose?.addEventListener('click', closeGallery);
-lightboxPrev?.addEventListener('click', () => moveGallery(-1));
-lightboxNext?.addEventListener('click', () => moveGallery(1));
-lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeGallery(); });
-document.addEventListener('keydown', (event) => {
-  if (!lightbox?.classList.contains('open')) return;
-  if (event.key === 'Escape') closeGallery();
-  if (event.key === 'ArrowLeft') moveGallery(-1);
-  if (event.key === 'ArrowRight') moveGallery(1);
-});
+function closeImage(){ if(!lightbox)return; lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+galleryButtons.forEach((btn,i)=>btn.addEventListener('click',()=>openImage(i)));
+document.querySelector('.lightbox-close')?.addEventListener('click',closeImage);
+document.querySelector('.lightbox-prev')?.addEventListener('click',()=>openImage(galleryIndex-1));
+document.querySelector('.lightbox-next')?.addEventListener('click',()=>openImage(galleryIndex+1));
+lightbox?.addEventListener('click',e=>{if(e.target===lightbox)closeImage()});
+document.addEventListener('keydown',e=>{if(!lightbox?.classList.contains('open'))return;if(e.key==='Escape')closeImage();if(e.key==='ArrowLeft')openImage(galleryIndex-1);if(e.key==='ArrowRight')openImage(galleryIndex+1)});
