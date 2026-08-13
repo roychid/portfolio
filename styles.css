@@ -167,7 +167,7 @@ h1 span { color: #65751f; }
 footer { padding:40px 0; border-top:1px solid var(--line); }
 .footer-wrap { display:flex; justify-content:space-between; gap:20px; color:#74756e; font-size:11px; }
 
-.reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
+.js .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
 .reveal.visible { opacity:1; transform:none; }
 
 @media (max-width: 900px) {
@@ -531,4 +531,7 @@ html[data-theme="dark"] .reel-fade-right { background:linear-gradient(270deg,var
 
 @media (prefers-reduced-motion: reduce) {
   .photo-reel-track { animation:none; }
+  .js .reveal { opacity:1; transform:none; transition:none; }
+  .pulse, .cursor, .sweep { animation:none; }
+  html { scroll-behavior:auto; }
 }
