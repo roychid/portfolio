@@ -1,26 +1,3 @@
-const THEME_KEY = 'roy-portfolio-theme';
-const root = document.documentElement;
-const themeButtons = document.querySelectorAll('.theme-toggle');
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-
-function getTheme() {
-  try { return localStorage.getItem(THEME_KEY) || root.dataset.theme || 'light'; }
-  catch (_) { return root.dataset.theme || 'light'; }
-}
-function applyTheme(theme, persist = false) {
-  const next = theme === 'dark' ? 'dark' : 'light';
-  root.dataset.theme = next;
-  if (persist) { try { localStorage.setItem(THEME_KEY, next); } catch (_) {} }
-  if (themeMeta) themeMeta.content = next === 'dark' ? '#0b0d0a' : '#f4f2ec';
-  themeButtons.forEach(btn => {
-    btn.setAttribute('aria-pressed', String(next === 'dark'));
-    btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-    btn.title = next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
-  });
-}
-applyTheme(getTheme());
-themeButtons.forEach(btn => btn.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true)));
-
 const header = document.querySelector('.site-header');
 window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 16));
 const menuBtn = document.querySelector('.menu-btn');

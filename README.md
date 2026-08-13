@@ -32,3 +32,10 @@ WhatsApp is already wired to `+263 775 881 639`.
 6. Production branch: `main`.
 
 No build step is required.
+
+
+## Latest layout update
+- Portfolio now uses a permanent dark theme.
+- Theme switching was removed from all pages.
+- The homepage focus strip was removed.
+- About content moved to `about.html`.
